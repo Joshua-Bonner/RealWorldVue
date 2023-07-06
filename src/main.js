@@ -4,6 +4,13 @@ import router from './router'
 import store from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import BaseIcon from '@/components/BaseIcon.vue'
+import 'nprogress/nprogress.css'
+import Vuelidate from 'vuelidate'
+
+Vue.use(Vuelidate)
+
+Vue.component('BaseIcon', BaseIcon)
 
 const requireComponent = require.context(
   './components',
