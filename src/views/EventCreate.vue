@@ -73,7 +73,6 @@
           v-model="event.date"
           placeholder="Select a date"
           :input-class="{ error: $v.event.date.$error }"
-          @focusin.native="$v.event.date.$touch()"
         />
       </div>
 

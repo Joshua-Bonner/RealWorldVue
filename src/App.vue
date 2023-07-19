@@ -2,7 +2,7 @@
   <div id="app">
     <NavBar />
     <NotificationContainer />
-    <router-view :key="$route.fullPath" />
+    <router-view :key="$route?.fullPath" />
   </div>
 </template>
 
@@ -14,6 +14,14 @@ export default {
   components: {
     NavBar,
     NotificationContainer,
+  },
+  watch: {
+    items: {
+      handler(val, oldVal) {
+        console.log(oldVal + ' --> ' + val)
+      },
+      deep: true,
+    },
   },
 }
 </script>

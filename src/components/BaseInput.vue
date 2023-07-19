@@ -2,9 +2,9 @@
   <div>
     <label v-if="label">{{ label }}</label>
     <input
+      v-bind="$attrs"
       :value="value"
       @input="updateValue"
-      v-bind="$attrs"
       v-on="listeners"
     />
   </div>

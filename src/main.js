@@ -7,6 +7,7 @@ import camelCase from 'lodash/camelCase'
 import BaseIcon from '@/components/BaseIcon.vue'
 import 'nprogress/nprogress.css'
 import Vuelidate from 'vuelidate'
+import { createApp } from 'vue'
 
 Vue.use(Vuelidate)
 
@@ -28,10 +29,12 @@ requireComponent.keys().forEach((fileName) => {
   Vue.component(componentName, componentConfig.default || componentConfig)
 })
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app')
+// new Vue({
+//   router,
+//   store,
+//   render: (h) => h(App),
+// }).$mount('#app')
+
+createApp(App).use(store).use(router).mount('#app')
