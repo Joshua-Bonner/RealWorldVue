@@ -28,7 +28,12 @@
   </div>
 </template>
 <script>
+import { watch } from 'vue'
+
 export default {
+  setup(props) {
+    watch(() => console.log('===look at me===', props.event))
+  },
   props: {
     event: {
       type: Object,
