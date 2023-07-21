@@ -6,10 +6,10 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import BaseIcon from '@/components/BaseIcon.vue'
 import 'nprogress/nprogress.css'
-import Vuelidate from 'vuelidate'
+// import { VuelidatePlugin } from '@vuelidate/core'
 import { createApp } from 'vue'
 
-Vue.use(Vuelidate)
+// Vue.use(VuelidatePlugin)
 
 Vue.component('BaseIcon', BaseIcon)
 
