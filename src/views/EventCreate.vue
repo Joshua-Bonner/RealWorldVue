@@ -113,6 +113,8 @@
 <script>
 import Datepicker from 'vuejs-datepicker'
 import NProgress from 'nprogress'
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
@@ -121,37 +123,21 @@ export default {
     Datepicker,
   },
   setup() {
-    return {
-      v$: useVuelidate(),
-    }
-  },
-  data() {
-    const times = []
+    const store = useStore()
+    const times = ref([])
     for (let i = 1; i <= 24; i++) {
-      times.push(i + ':00')
+      times.value.push(i + ':00')
     }
-    return {
-      times,
-      categories: this.$store.state.categories,
-      event: this.createFreshEventObject(),
-    }
-  },
-  validations: {
-    event: {
-      category: { required },
-      title: { required },
-      description: { required },
-      location: { required },
-      date: { required },
-      time: { required },
-    },
-  },
-  methods: {
-    createEvent() {
+
+    const categories = computed(() => {
+      return store.state.categories
+    })
+
+    function createEvent() {
       this.v$.$touch()
       if (!this.v$.$invalid) {
         NProgress.start()
-        this.$store
+        store
           .dispatch('event/createEvent', this.event)
           .then(() => {
             this.$router.push({
@@ -164,9 +150,9 @@ export default {
             NProgress.done()
           })
       }
-    },
-    createFreshEventObject() {
-      const user = this.$store.state.user.user
+    }
+    function createFreshEventObject() {
+      const user = store.state.user.user
       const id = Math.floor(Math.random() * 10000000)
 
       return {
@@ -181,6 +167,24 @@ export default {
         time: '',
         attendees: [],
       }
+    }
+    const event = ref(createFreshEventObject())
+    return {
+      v$: useVuelidate(),
+      times,
+      categories,
+      event,
+      createEvent,
+    }
+  },
+  validations: {
+    event: {
+      category: { required },
+      title: { required },
+      description: { required },
+      location: { required },
+      date: { required },
+      time: { required },
     },
   },
 }
