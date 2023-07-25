@@ -3,13 +3,10 @@ import router from './router'
 import store from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
-import BaseIcon from '@/components/BaseIcon.vue'
 import 'nprogress/nprogress.css'
 import { createApp } from 'vue'
 
 const app = createApp(App)
-
-app.component('BaseIcon', BaseIcon)
 
 const requireComponent = require.context(
   './components',
