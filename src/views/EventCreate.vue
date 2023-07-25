@@ -3,23 +3,23 @@
     <h1>Create an Event</h1>
     <form @submit.prevent="createEvent">
       <BaseSelect
+        v-model="event.category"
         label="Select a category"
         :options="categories"
-        v-model="event.category"
       />
 
       <h3>Name & describe your event</h3>
       <BaseInput
-        label="Title"
         v-model="event.title"
+        label="Title"
         type="text"
         placeholder="Title"
         class="field"
       />
 
       <BaseInput
-        label="Description"
         v-model="event.description"
+        label="Description"
         type="text"
         placeholder="Description"
         class="field"
@@ -27,8 +27,8 @@
 
       <h3>Where is your event?</h3>
       <BaseInput
-        label="Location"
         v-model="event.location"
+        label="Location"
         type="text"
         placeholder="Location"
         class="field"
@@ -42,13 +42,15 @@
       </div>
 
       <BaseSelect
+        v-model="event.time"
         label="Select a time"
         :options="times"
-        v-model="event.time"
         class="field"
       />
 
-      <BaseButton type="submit" buttonClass="-fill-gradient">Submit</BaseButton>
+      <BaseButton type="submit" button-class="-fill-gradient"
+        >Submit</BaseButton
+      >
     </form>
   </div>
 </template>
@@ -60,6 +62,9 @@ import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
+  compatConfig: {
+    MODE: 3,
+  },
   components: {
     Datepicker,
   },

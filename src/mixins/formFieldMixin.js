@@ -9,7 +9,7 @@ export const formFieldMixin = {
   },
   methods: {
     updateValue(event) {
-      this.$emit('input', event.target.value)
+      this.$emit('update:modelValue', event.target.value)
     },
   },
 }
