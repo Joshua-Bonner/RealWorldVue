@@ -1,16 +1,12 @@
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import { router } from './router'
+import { store } from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import 'nprogress/nprogress.css'
-import { createApp, configureCompat } from 'vue'
+import { createApp } from 'vue'
 
 const app = createApp(App)
-
-configureCompat({
-  MODE: 3,
-})
 
 const requireComponent = require.context(
   './components',
@@ -28,4 +24,4 @@ requireComponent.keys().forEach((fileName) => {
   app.component(componentName, componentConfig.default || componentConfig)
 })
 
-app.use(store).use(router).mount('#app')
+app.use(router).use(store).mount('#app')

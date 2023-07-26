@@ -38,12 +38,12 @@
 
       <div class="field">
         <label>Date</label>
-        <Datepicker v-model="event.date" placeholder="Select a date" />
+        <Datepicker v-model="event.date" placeholder="Date" />
       </div>
 
       <BaseSelect
         v-model="event.time"
-        label="Select a time"
+        label="Time"
         :options="times"
         class="field"
       />
@@ -68,7 +68,7 @@ export default {
   setup() {
     const store = useStore()
     const times = ref([])
-    const date = ref(new Date())
+    const date = ref(new Date(''))
     const event = ref(createFreshEventObject())
 
     for (let i = 1; i <= 24; i++) {

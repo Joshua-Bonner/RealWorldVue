@@ -1,17 +1,13 @@
-// import Vue from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import EventCreate from '../views/EventCreate.vue'
 import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
 import NProgress from 'nprogress'
-import store from '@/store/index.js'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
-// import { createWebHistory } from 'vue-router/dist/vue-router'
+import { store } from '@/store'
 
-// Vue.use(Router)
-
-const router = new createRouter({
+export const router = new createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
@@ -72,5 +68,3 @@ router.beforeEach((routeTo, routeFrom, next) => {
 router.afterEach(() => {
   NProgress.done()
 })
-
-export default router

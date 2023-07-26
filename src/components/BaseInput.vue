@@ -8,9 +8,6 @@
 import { formFieldMixin } from '../mixins/formFieldMixin'
 
 export default {
-  compatConfig: {
-    MODE: 3,
-  },
   mixins: [formFieldMixin],
   props: {
     modelValue: {
