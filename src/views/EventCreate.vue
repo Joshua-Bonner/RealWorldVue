@@ -60,6 +60,7 @@ import Datepicker from 'vue3-datepicker'
 import NProgress from 'nprogress'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   components: {
@@ -70,6 +71,7 @@ export default {
     const times = ref([])
     const date = ref(new Date())
     const event = ref(createFreshEventObject())
+    const router = useRouter()
 
     for (let i = 1; i <= 24; i++) {
       times.value.push(i + ':00')
@@ -84,7 +86,7 @@ export default {
       store
         .dispatch('event/createEvent', this.event)
         .then(() => {
-          this.$router.push({
+          router.push({
             name: 'event-show',
             params: { id: this.event.id },
           })
