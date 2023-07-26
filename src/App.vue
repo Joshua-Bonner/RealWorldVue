@@ -15,14 +15,6 @@ export default {
     NavBar,
     NotificationContainer,
   },
-  watch: {
-    items: {
-      handler(val, oldVal) {
-        console.log(oldVal + ' --> ' + val)
-      },
-      deep: true,
-    },
-  },
 }
 </script>
 
