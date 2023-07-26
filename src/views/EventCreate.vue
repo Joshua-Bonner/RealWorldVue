@@ -68,7 +68,7 @@ export default {
   setup() {
     const store = useStore()
     const times = ref([])
-    const date = ref(new Date(''))
+    const date = ref(new Date())
     const event = ref(createFreshEventObject())
 
     for (let i = 1; i <= 24; i++) {

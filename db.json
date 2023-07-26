@@ -231,24 +231,6 @@
       "date": "",
       "time": "5:00",
       "attendees": []
-    },
-    {
-      "id": 3670645,
-      "user": {
-        "id": "abc123",
-        "name": "Adam"
-      },
-      "category": "sustainability",
-      "organizer": {
-        "id": "abc123",
-        "name": "Adam"
-      },
-      "title": "test",
-      "description": "another test",
-      "location": "narnia",
-      "date": "2023-07-14T13:31:00.000Z",
-      "time": "17:00",
-      "attendees": []
     }
   ]
 }
