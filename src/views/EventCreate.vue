@@ -38,7 +38,7 @@
 
       <div class="field">
         <label>Date</label>
-        <datepicker v-model="event.date" placeholder="Select a date" />
+        <Datepicker v-model="event.date" placeholder="Select a date" />
       </div>
 
       <BaseSelect
@@ -56,21 +56,19 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
+import Datepicker from 'vue3-datepicker'
 import NProgress from 'nprogress'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
-  compatConfig: {
-    MODE: 3,
-  },
   components: {
     Datepicker,
   },
   setup() {
     const store = useStore()
     const times = ref([])
+    const date = ref(new Date())
     const event = ref(createFreshEventObject())
 
     for (let i = 1; i <= 24; i++) {
@@ -101,14 +99,14 @@ export default {
       const id = Math.floor(Math.random() * 10000000)
 
       return {
-        id: id,
-        user: user,
+        id,
+        user,
         category: '',
         organizer: user,
         title: '',
         description: '',
         location: '',
-        date: '',
+        date,
         time: '',
         attendees: [],
       }

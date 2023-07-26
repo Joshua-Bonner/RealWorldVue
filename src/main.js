@@ -4,9 +4,13 @@ import store from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import 'nprogress/nprogress.css'
-import { createApp } from 'vue'
+import { createApp, configureCompat } from 'vue'
 
 const app = createApp(App)
+
+configureCompat({
+  MODE: 3,
+})
 
 const requireComponent = require.context(
   './components',
