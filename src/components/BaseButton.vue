@@ -12,6 +12,7 @@ export default {
   props: {
     buttonClass: {
       type: String,
+      default: '',
     },
   },
 }

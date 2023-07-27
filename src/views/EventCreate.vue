@@ -38,7 +38,11 @@
 
       <div class="field">
         <label>Date</label>
-        <Datepicker v-model="event.date" placeholder="Date" />
+        <Datepicker
+          v-model="event.date"
+          input-format="MMM dd yyyy"
+          placeholder="Date"
+        />
       </div>
 
       <BaseSelect
@@ -58,8 +62,8 @@
 <script>
 import Datepicker from 'vue3-datepicker'
 import NProgress from 'nprogress'
+import store from '@/store/index.js'
 import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -67,7 +71,6 @@ export default {
     Datepicker,
   },
   setup() {
-    const store = useStore()
     const times = ref([])
     const date = ref(new Date())
     const event = ref(createFreshEventObject())
