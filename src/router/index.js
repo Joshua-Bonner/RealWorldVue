@@ -1,17 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import EventCreate from '../views/EventCreate.vue'
 import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
 import NProgress from 'nprogress'
-import store from '@/store/index.js'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
+import { store } from '@/store'
 
-Vue.use(Router)
-
-const router = new Router({
-  mode: 'history',
+export const router = new createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -57,7 +54,7 @@ const router = new Router({
       component: NetworkIssue,
     },
     {
-      path: '*',
+      path: '/:catchAll(.*)',
       redirect: { name: '404', params: { resource: 'page' } },
     },
   ],

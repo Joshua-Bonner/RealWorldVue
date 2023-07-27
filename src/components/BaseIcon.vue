@@ -6,6 +6,7 @@
 </template>
 <script>
 import feather from 'feather-icons'
+import { computed } from 'vue'
 
 export default {
   props: {
@@ -22,13 +23,14 @@ export default {
       default: 24,
     },
   },
-  computed: {
-    svg() {
-      return feather.icons[this.name].toSvg({
-        width: this.width,
-        height: this.height,
+  setup(props) {
+    const svg = computed(() =>
+      feather.icons[props.name].toSvg({
+        width: props.width,
+        height: props.height,
       })
-    },
+    )
+    return { svg }
   },
 }
 </script>

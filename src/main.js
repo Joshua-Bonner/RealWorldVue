@@ -1,16 +1,12 @@
-import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import { router } from './router'
+import { store } from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
-import BaseIcon from '@/components/BaseIcon.vue'
 import 'nprogress/nprogress.css'
-import Vuelidate from 'vuelidate'
+import { createApp } from 'vue'
 
-Vue.use(Vuelidate)
-
-Vue.component('BaseIcon', BaseIcon)
+const app = createApp(App)
 
 const requireComponent = require.context(
   './components',
@@ -25,13 +21,7 @@ requireComponent.keys().forEach((fileName) => {
     camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, '$1'))
   )
 
-  Vue.component(componentName, componentConfig.default || componentConfig)
+  app.component(componentName, componentConfig.default || componentConfig)
 })
 
-Vue.config.productionTip = false
-
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app')
+app.use(router).use(store).mount('#app')
