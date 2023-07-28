@@ -6,7 +6,14 @@
         v-model="event.category"
         label="Select a category"
         :options="categories"
+        :class="{ error: v$.event.category.$error }"
+        @blur="v$.event.category.$touch"
       />
+      <template v-if="v$.event.category.$error">
+        <p v-if="v$.event.category.required" class="errorMessage">
+          Category is required.
+        </p>
+      </template>
 
       <h3>Name & describe your event</h3>
       <BaseInput
@@ -15,7 +22,14 @@
         type="text"
         placeholder="Title"
         class="field"
+        :class="{ error: v$.event.title.$error }"
+        @blur="v$.event.title.$touch"
       />
+      <template v-if="v$.event.title.$error">
+        <p v-if="v$.event.title.required" class="errorMessage">
+          Title is required.
+        </p>
+      </template>
 
       <BaseInput
         v-model="event.description"
@@ -23,7 +37,14 @@
         type="text"
         placeholder="Description"
         class="field"
+        :class="{ error: v$.event.description.$error }"
+        @blur="v$.event.description.$touch"
       />
+      <template v-if="v$.event.description.$error">
+        <p v-if="v$.event.description.required" class="errorMessage">
+          Description is required.
+        </p>
+      </template>
 
       <h3>Where is your event?</h3>
       <BaseInput
@@ -32,7 +53,14 @@
         type="text"
         placeholder="Location"
         class="field"
+        :class="{ error: v$.event.location.$error }"
+        @blur="v$.event.location.$touch"
       />
+      <template v-if="v$.event.location.$error">
+        <p v-if="v$.event.location.required" class="errorMessage">
+          Location is required.
+        </p>
+      </template>
 
       <h3>When is your event?</h3>
 
@@ -42,7 +70,14 @@
           v-model="event.date"
           input-format="MMM dd yyyy"
           placeholder="Date"
+          :class="{ error: v$.event.date.$error }"
+          @blur="v$.event.date.$touch"
         />
+        <template v-if="v$.event.date.$error">
+          <p v-if="v$.event.date.required" class="errorMessage">
+            Date is required.
+          </p>
+        </template>
       </div>
 
       <BaseSelect
@@ -50,11 +85,25 @@
         label="Time"
         :options="times"
         class="field"
+        :class="{ error: v$.event.time.$error }"
+        @blur="v$.event.time.$touch"
       />
+      <template v-if="v$.event.time.$error">
+        <p v-if="v$.event.time.required" class="errorMessage">
+          Time is required.
+        </p>
+      </template>
 
-      <BaseButton type="submit" button-class="-fill-gradient"
+      <BaseButton
+        type="submit"
+        button-class="-fill-gradient"
+        :disabled="v$.$anyError"
         >Submit</BaseButton
       >
+
+      <p v-if="v$.$anyError" class="errorMessage">
+        Please fill out the required field(s).
+      </p>
     </form>
   </div>
 </template>
@@ -65,6 +114,8 @@ import NProgress from 'nprogress'
 import store from '@/store/index.js'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 
 export default {
   components: {
@@ -75,6 +126,16 @@ export default {
     const date = ref(new Date())
     const event = ref(createFreshEventObject())
     const router = useRouter()
+    const rules = {
+      event: {
+        category: { required },
+        title: { required },
+        description: { required },
+        location: { required },
+        date: { required },
+        time: { required },
+      },
+    }
 
     for (let i = 1; i <= 24; i++) {
       times.value.push(i + ':00')
@@ -84,7 +145,10 @@ export default {
       return store.state.categories
     })
 
-    function createEvent() {
+    async function createEvent() {
+      this.v$.$touch()
+      const isFormValid = await this.v$.$validate()
+      if (!isFormValid) return
       NProgress.start()
       store
         .dispatch('event/createEvent', this.event)
@@ -117,6 +181,7 @@ export default {
       }
     }
     return {
+      v$: useVuelidate(rules, event, { $lazy: true }),
       times,
       categories,
       event,
