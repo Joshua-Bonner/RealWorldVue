@@ -5,7 +5,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import store from '@/store/index.js'
+import { computed } from 'vue'
+
 export default {
   props: {
     notification: {
@@ -13,23 +15,26 @@ export default {
       required: true,
     },
   },
-  data() {
+  setup(props) {
+    const notificationTypeClass = computed(() => {
+      return `-text-${props.notification.type}`
+    })
+    const remove = (id) => store.dispatch('notification/remove', { id })
+    const timeout = null
     return {
-      timeout: null,
+      notificationTypeClass,
+      timeout,
+      remove,
     }
   },
-  computed: {
-    notificationTypeClass() {
-      return `-text-${this.notification.type}`
-    },
-  },
   mounted() {
-    this.timeout = setTimeout(() => this.remove(this.notification), 5000)
+    this.timeout = setTimeout(() => {
+      this.remove(this.notification.id)
+    }, 5000)
   },
   beforeUnmount() {
     clearTimeout(this.timeout)
   },
-  methods: mapActions('notification', ['remove']),
 }
 </script>
 
