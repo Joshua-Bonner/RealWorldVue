@@ -9,11 +9,10 @@
         :class="{ error: v$.event.category.$error }"
         @blur="v$.event.category.$touch"
       />
-      <template v-if="v$.event.category.$error">
-        <p v-if="v$.event.category.required" class="errorMessage">
-          Category is required.
-        </p>
-      </template>
+
+      <p v-if="v$.event.category.$error" class="errorMessage">
+        Category is required.
+      </p>
 
       <h3>Name & describe your event</h3>
       <BaseInput
@@ -25,11 +24,10 @@
         :class="{ error: v$.event.title.$error }"
         @blur="v$.event.title.$touch"
       />
-      <template v-if="v$.event.title.$error">
-        <p v-if="v$.event.title.required" class="errorMessage">
-          Title is required.
-        </p>
-      </template>
+
+      <p v-if="v$.event.title.$error" class="errorMessage">
+        Title is required.
+      </p>
 
       <BaseInput
         v-model="event.description"
@@ -40,11 +38,10 @@
         :class="{ error: v$.event.description.$error }"
         @blur="v$.event.description.$touch"
       />
-      <template v-if="v$.event.description.$error">
-        <p v-if="v$.event.description.required" class="errorMessage">
-          Description is required.
-        </p>
-      </template>
+
+      <p v-if="v$.event.description.$error" class="errorMessage">
+        Description is required.
+      </p>
 
       <h3>Where is your event?</h3>
       <BaseInput
@@ -56,11 +53,10 @@
         :class="{ error: v$.event.location.$error }"
         @blur="v$.event.location.$touch"
       />
-      <template v-if="v$.event.location.$error">
-        <p v-if="v$.event.location.required" class="errorMessage">
-          Location is required.
-        </p>
-      </template>
+
+      <p v-if="v$.event.location.$error" class="errorMessage">
+        Location is required.
+      </p>
 
       <h3>When is your event?</h3>
 
@@ -73,11 +69,10 @@
           :class="{ error: v$.event.date.$error }"
           @blur="v$.event.date.$touch"
         />
-        <template v-if="v$.event.date.$error">
-          <p v-if="v$.event.date.required" class="errorMessage">
-            Date is required.
-          </p>
-        </template>
+
+        <p v-if="v$.event.date.$error" class="errorMessage">
+          Date is required.
+        </p>
       </div>
 
       <BaseSelect
@@ -88,20 +83,17 @@
         :class="{ error: v$.event.time.$error }"
         @blur="v$.event.time.$touch"
       />
-      <template v-if="v$.event.time.$error">
-        <p v-if="v$.event.time.required" class="errorMessage">
-          Time is required.
-        </p>
-      </template>
+
+      <p v-if="v$.event.time.$error" class="errorMessage">Time is required.</p>
 
       <BaseButton
         type="submit"
         button-class="-fill-gradient"
-        :disabled="v$.$anyError"
+        :disabled="v$.event.$invalid"
         >Submit</BaseButton
       >
 
-      <p v-if="v$.$anyError" class="errorMessage">
+      <p v-if="v$.event.$invalid" class="errorMessage">
         Please fill out the required field(s).
       </p>
     </form>
@@ -126,7 +118,7 @@ export default {
     const date = ref(new Date())
     const event = ref(createFreshEventObject())
     const router = useRouter()
-    const rules = {
+    const rules = computed(() => ({
       event: {
         category: { required },
         title: { required },
@@ -135,9 +127,9 @@ export default {
         date: { required },
         time: { required },
       },
-    }
+    }))
 
-    for (let i = 1; i <= 24; i++) {
+    for (let i = 0; i <= 23; i++) {
       times.value.push(i + ':00')
     }
 
@@ -163,6 +155,7 @@ export default {
           NProgress.done()
         })
     }
+
     function createFreshEventObject() {
       const user = store.state.user.user
       const id = Math.floor(Math.random() * 10000000)
@@ -180,8 +173,9 @@ export default {
         attendees: [],
       }
     }
+
     return {
-      v$: useVuelidate(rules, event, { $lazy: true }),
+      v$: useVuelidate(rules, { event }),
       times,
       categories,
       event,
