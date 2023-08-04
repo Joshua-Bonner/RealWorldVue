@@ -228,9 +228,32 @@
       "title": "Gregg's Event",
       "description": "We'll do stuff",
       "location": "Your House",
-      "date": "",
+      "date": "SEP 28 2018",
       "time": "5:00",
       "attendees": []
+    },
+    {
+      "id": 2422690,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "housing",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "Put Your Mother In a Home",
+      "description": "Shes getting old",
+      "location": "Some old folks home",
+      "date": "2023-07-27T19:22:54.689Z",
+      "time": "2:00",
+      "attendees": [
+        {
+          "id": "abc123",
+          "name": "Mommy Momsum"
+        }
+      ]
     }
   ]
 }

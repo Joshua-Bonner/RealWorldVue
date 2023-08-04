@@ -216,9 +216,6 @@ textarea {
 [hidden] {
   display: none;
 }
-.error {
-  border: 1px solid red;
-}
 select {
   width: 100%;
   height: 52px;
@@ -253,5 +250,6 @@ select::ms-expand {
 }
 .errorMessage {
   color: red;
+  transform: translate(0, -10px);
 }
 </style>
