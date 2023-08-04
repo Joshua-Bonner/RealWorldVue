@@ -9,13 +9,18 @@
 </template>
 <script>
 import NotificationBar from '@/components/NotificationBar.vue'
-import { mapState } from 'vuex'
+import { useNotificationStore } from '@/stores/notificationStore.js'
 
 export default {
   components: {
     NotificationBar,
   },
-  computed: mapState('notification', ['notifications']),
+  setup() {
+    const notificationStore = useNotificationStore()
+    return {
+      notifications: notificationStore.notifications,
+    }
+  },
 }
 </script>
 <style scoped>

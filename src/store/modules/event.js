@@ -1,4 +1,5 @@
 import EventService from '@/services/EventService'
+import { useNotificationStore } from '@/stores/notificationStore'
 
 export const namespaced = true
 
@@ -25,7 +26,7 @@ export const mutations = {
 }
 
 export const actions = {
-  createEvent({ commit, dispatch }, event) {
+  createEvent({ commit }, event) {
     return EventService.postEvent(event)
       .then(() => {
         commit('ADD_EVENT', event)
@@ -33,14 +34,14 @@ export const actions = {
           type: 'success',
           message: 'Your event has been created!',
         }
-        dispatch('notification/add', notification, { root: true })
+        useNotificationStore().add(notification)
       })
       .catch((error) => {
         const notification = {
           type: 'error',
           message: 'There was a problem creating your event: ' + error.message,
         }
-        dispatch('notification/add', notification, { root: true })
+        useNotificationStore().add(notification)
         throw error
       })
   },
@@ -56,7 +57,7 @@ export const actions = {
       })
     }
   },
-  fetchEvents({ commit, dispatch }, { page }) {
+  fetchEvents({ commit }, { page }) {
     return EventService.getEvents(state.perPage, page)
       .then((response) => {
         commit('SET_EVENTS', response.data)
@@ -67,7 +68,7 @@ export const actions = {
           type: 'error',
           message: 'There was a problem fetching events: ' + error.message,
         }
-        dispatch('notification/add', notification, { root: true })
+        useNotificationStore().add(notification)
       })
   },
 }

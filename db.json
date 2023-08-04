@@ -254,6 +254,132 @@
           "name": "Mommy Momsum"
         }
       ]
+    },
+    {
+      "id": 9825858,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:35:47.658Z",
+      "time": "0:00",
+      "attendees": []
+    },
+    {
+      "id": 6373886,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:37:44.894Z",
+      "time": "0:00",
+      "attendees": []
+    },
+    {
+      "id": 6129735,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:39:48.497Z",
+      "time": "0:00",
+      "attendees": []
+    },
+    {
+      "id": 9788543,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:41:53.315Z",
+      "time": "0:00",
+      "attendees": []
+    },
+    {
+      "id": 389747,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:43:48.287Z",
+      "time": "0:00",
+      "attendees": []
+    },
+    {
+      "id": 6666437,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:45:51.428Z",
+      "time": "0:00",
+      "attendees": []
+    },
+    {
+      "id": 1481809,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "sustainability",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "testt",
+      "description": "test",
+      "location": "test",
+      "date": "2023-08-04T19:47:54.292Z",
+      "time": "0:00",
+      "attendees": []
     }
   ]
 }

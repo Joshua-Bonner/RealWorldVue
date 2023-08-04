@@ -5,7 +5,9 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import 'nprogress/nprogress.css'
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
+const pinia = createPinia()
 const app = createApp(App)
 
 const requireComponent = require.context(
@@ -24,4 +26,4 @@ requireComponent.keys().forEach((fileName) => {
   app.component(componentName, componentConfig.default || componentConfig)
 })
 
-app.use(router).use(store).mount('#app')
+app.use(router).use(store).use(pinia).mount('#app')

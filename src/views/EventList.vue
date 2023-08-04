@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Events for {{ user.user.name }}</h1>
+    <h1>Events for {{ user.name }}</h1>
     <EventCard v-for="event in events" :key="event.id" :event="event" />
     <router-link
       v-if="page > 1"
@@ -20,6 +20,7 @@
 <script>
 import EventCard from '@/components/EventCard.vue'
 import store from '@/store/index.js'
+import { useUserStore } from '@/stores/userStore.js'
 import { computed } from 'vue'
 
 function getPageEvents(routeTo, next) {
@@ -62,7 +63,7 @@ export default {
       return event.value.events
     })
     const user = computed(() => {
-      return store.state.user
+      return useUserStore().user
     })
     const hasNextPage = computed(() => {
       return event.value.eventsTotal > props.page * event.value.perPage

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import store from '@/store/index.js'
 import { computed } from 'vue'
+import { useNotificationStore } from '@/stores/notificationStore.js'
 
 export default {
   props: {
@@ -16,15 +16,18 @@ export default {
     },
   },
   setup(props) {
+    const notificationStore = useNotificationStore()
+    const remove = (id) => {
+      notificationStore.remove(id)
+    }
     const notificationTypeClass = computed(() => {
       return `-text-${props.notification.type}`
     })
-    const remove = (id) => store.dispatch('notification/remove', { id })
     const timeout = null
     return {
+      remove,
       notificationTypeClass,
       timeout,
-      remove,
     }
   },
   mounted() {
