@@ -3,15 +3,17 @@ import { defineStore } from 'pinia'
 export const useNotificationStore = defineStore('notification', {
   state: () => ({
     notifications: [],
+    nextId: 1,
   }),
 
   actions: {
     add(notification) {
       this.notifications.push(notification)
+      notification.id = this.nextId++
     },
-    remove(notificationToRemove) {
+    remove(notificationIdToRemove) {
       this.notifications = this.notifications.filter(
-        (notification) => notification.id !== notificationToRemove.id
+        (notification) => notification.id !== notificationIdToRemove
       )
     },
   },

@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+import { computed } from 'vue'
 import NotificationBar from '@/components/NotificationBar.vue'
 import { useNotificationStore } from '@/stores/notificationStore.js'
 
@@ -17,8 +18,9 @@ export default {
   },
   setup() {
     const notificationStore = useNotificationStore()
+    const notifications = computed(() => notificationStore.notifications)
     return {
-      notifications: notificationStore.notifications,
+      notifications,
     }
   },
 }

@@ -17,26 +17,22 @@ export default {
   },
   setup(props) {
     const notificationStore = useNotificationStore()
-    const remove = (id) => {
-      notificationStore.remove(id)
-    }
     const notificationTypeClass = computed(() => {
       return `-text-${props.notification.type}`
     })
-    const timeout = null
+
     return {
-      remove,
       notificationTypeClass,
-      timeout,
+      notificationStore,
     }
   },
   mounted() {
-    this.timeout = setTimeout(() => {
-      this.remove(this.notification.id)
+    setTimeout(() => {
+      this.notificationStore.remove(this.notification.id)
     }, 5000)
   },
-  beforeUnmount() {
-    clearTimeout(this.timeout)
+  unmounted() {
+    clearTimeout()
   },
 }
 </script>
