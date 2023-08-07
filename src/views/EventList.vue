@@ -19,22 +19,19 @@
 </template>
 <script>
 import EventCard from '@/components/EventCard.vue'
-import store from '@/store/index.js'
+import { useEventStore } from '@/stores/eventStore.js'
 import { useUserStore } from '@/stores/userStore.js'
 import { computed } from 'vue'
 
 function getPageEvents(routeTo, next) {
-  const currentPage = parseInt(routeTo.query.page) || 1
-  store
-    .dispatch('event/fetchEvents', {
-      page: currentPage,
-    })
+  const page = parseInt(routeTo.query.page) || 1
+  const eventStore = useEventStore()
+  eventStore
+    .fetchEvents(page)
     .then(() => {
-      routeTo.params.page = currentPage
       next()
     })
-    .catch((error) => {
-      console.log(error)
+    .catch(() => {
       next({ name: '404', params: { resource: 'event' } })
     })
 }
@@ -56,19 +53,18 @@ export default {
     },
   },
   setup(props) {
-    const event = computed(() => {
-      return store.state.event
-    })
+    const eventStore = useEventStore()
     const events = computed(() => {
-      return event.value.events
+      return eventStore.events
     })
     const user = computed(() => {
       return useUserStore().user
     })
     const hasNextPage = computed(() => {
-      return event.value.eventsTotal > props.page * event.value.perPage
+      return eventStore.eventsTotal > props.page * eventStore.perPage
     })
-    return { hasNextPage, events, user }
+
+    return { hasNextPage, events, user, eventStore }
   },
 }
 </script>
