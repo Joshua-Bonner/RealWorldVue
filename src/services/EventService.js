@@ -20,4 +20,7 @@ export default {
   postEvent(event) {
     return apiClient.post('/events', event)
   },
+  getInjectedTemplate() {
+    return apiClient.get('/injectedTemplate')
+  },
 }
