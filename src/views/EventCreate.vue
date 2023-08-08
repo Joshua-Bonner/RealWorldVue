@@ -103,13 +103,13 @@
 <script>
 import Datepicker from 'vue3-datepicker'
 import NProgress from 'nprogress'
-import store from '@/store/index.js'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { useMainStore } from '@/stores/index.js'
 import { useUserStore } from '@/stores/userStore.js'
+import { useEventStore } from '@/stores/eventStore.js'
 
 export default {
   components: {
@@ -142,8 +142,8 @@ export default {
       const isFormValid = await this.v$.$validate()
       if (!isFormValid) return
       NProgress.start()
-      store
-        .dispatch('event/createEvent', this.event)
+      useEventStore()
+        .createEvent(this.event)
         .then(() => {
           router.push({
             name: 'event-show',

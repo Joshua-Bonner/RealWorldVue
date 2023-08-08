@@ -1,6 +1,5 @@
 import App from './App.vue'
 import { router } from './router'
-import { store } from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import 'nprogress/nprogress.css'
@@ -26,4 +25,4 @@ requireComponent.keys().forEach((fileName) => {
   app.component(componentName, componentConfig.default || componentConfig)
 })
 
-app.use(router).use(store).use(pinia).mount('#app')
+app.use(router).use(pinia).mount('#app')
