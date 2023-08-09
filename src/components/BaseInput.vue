@@ -1,7 +1,14 @@
 <template>
   <div>
-    <label v-if="label">{{ label }}</label>
-    <input v-bind="$attrs" :value="modelValue" @input="updateValue" />
+    <v-text-field
+      clearable
+      v-bind="$attrs"
+      density="compact"
+      :label="label"
+      :value="modelValue"
+      variant="outlined"
+      @input="updateValue"
+    />
   </div>
 </template>
 <script>
@@ -12,6 +19,10 @@ export default {
   props: {
     modelValue: {
       type: [String, Number],
+      required: true,
+    },
+    label: {
+      type: String,
       required: true,
     },
   },
