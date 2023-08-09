@@ -5,7 +5,7 @@ import EventShow from '../views/EventShow.vue'
 import NProgress from 'nprogress'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
-import { store } from '@/store'
+import { useEventStore } from '@/stores/eventStore'
 
 export const router = new createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -14,7 +14,7 @@ export const router = new createRouter({
       path: '/',
       name: 'event-list',
       component: EventList,
-      props: true,
+      props: (route) => ({ page: parseInt(route.query.page) || 1 }),
     },
     {
       path: '/event/create',
@@ -27,8 +27,8 @@ export const router = new createRouter({
       component: EventShow,
       props: true,
       beforeEnter(routeTo, routeFrom, next) {
-        store
-          .dispatch('event/fetchEvent', routeTo.params.id)
+        useEventStore()
+          .fetchEvent(routeTo.params.id)
           .then((event) => {
             routeTo.params.event = event
             next()

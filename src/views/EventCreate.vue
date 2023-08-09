@@ -103,11 +103,13 @@
 <script>
 import Datepicker from 'vue3-datepicker'
 import NProgress from 'nprogress'
-import store from '@/store/index.js'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
+import { useMainStore } from '@/stores/index.js'
+import { useUserStore } from '@/stores/userStore.js'
+import { useEventStore } from '@/stores/eventStore.js'
 
 export default {
   components: {
@@ -118,6 +120,8 @@ export default {
     const date = ref(new Date())
     const event = ref(createFreshEventObject())
     const router = useRouter()
+    const mainStore = useMainStore()
+    const categories = computed(() => mainStore.categories)
     const rules = computed(() => ({
       event: {
         category: { required },
@@ -133,17 +137,13 @@ export default {
       times.value.push(i + ':00')
     }
 
-    const categories = computed(() => {
-      return store.state.categories
-    })
-
     async function createEvent() {
       this.v$.$touch()
       const isFormValid = await this.v$.$validate()
       if (!isFormValid) return
       NProgress.start()
-      store
-        .dispatch('event/createEvent', this.event)
+      useEventStore()
+        .createEvent(this.event)
         .then(() => {
           router.push({
             name: 'event-show',
@@ -157,7 +157,7 @@ export default {
     }
 
     function createFreshEventObject() {
-      const user = store.state.user.user
+      const user = useUserStore().user
       const id = Math.floor(Math.random() * 10000000)
 
       return {

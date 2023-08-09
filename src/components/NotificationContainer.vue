@@ -8,14 +8,21 @@
   </div>
 </template>
 <script>
+import { computed } from 'vue'
 import NotificationBar from '@/components/NotificationBar.vue'
-import { mapState } from 'vuex'
+import { useNotificationStore } from '@/stores/notificationStore.js'
 
 export default {
   components: {
     NotificationBar,
   },
-  computed: mapState('notification', ['notifications']),
+  setup() {
+    const notificationStore = useNotificationStore()
+    const notifications = computed(() => notificationStore.notifications)
+    return {
+      notifications,
+    }
+  },
 }
 </script>
 <style scoped>
