@@ -1,7 +1,4 @@
 {
-  "injectedTemplate": {
-    "template": "<h1>INJECTED TEMPLATE</h1>"
-  },
   "events": [
     {
       "id": 1,

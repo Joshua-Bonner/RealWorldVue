@@ -6,7 +6,6 @@ import NProgress from 'nprogress'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
 import { useEventStore } from '@/stores/eventStore'
-import InjectionDemo from '../views/InjectionDemo.vue'
 
 export const router = new createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -16,11 +15,6 @@ export const router = new createRouter({
       name: 'event-list',
       component: EventList,
       props: (route) => ({ page: parseInt(route.query.page) || 1 }),
-    },
-    {
-      path: '/injectionDemo',
-      name: 'injection-demo',
-      component: InjectionDemo,
     },
     {
       path: '/event/create',
