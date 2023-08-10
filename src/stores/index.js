@@ -3,13 +3,13 @@ import { defineStore } from 'pinia'
 export const useMainStore = defineStore('main', {
   state: () => ({
     categories: [
-      'sustainability',
-      'nature',
-      'animal welfare',
-      'housing',
-      'education',
-      'food',
-      'community',
+      'Sustainability',
+      'Nature',
+      'Animal Welfare',
+      'Housing',
+      'Education',
+      'Food',
+      'Community',
     ],
   }),
 })

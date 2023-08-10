@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="createEvent">
-    <v-container>
+    <v-container class="pa-lg-0">
       <v-sheet class="pa-lg-3 ma-lg-auto" elevation="24" rounded>
         <v-row>
           <v-col>

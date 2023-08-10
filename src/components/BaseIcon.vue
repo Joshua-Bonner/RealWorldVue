@@ -1,7 +1,7 @@
 <template>
   <div class="icon-wrapper">
     <!-- eslint-disable-next-line -->
-    <svg class="icon" :width="width" :height="height" v-html="svg"></svg>
+    <v-icon class="icon" :width="width" :height="height" v-html="svg"></v-icon>
     <slot></slot>
   </div>
 </template>
