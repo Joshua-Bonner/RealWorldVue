@@ -33,7 +33,6 @@ body {
 #app {
   box-sizing: border-box;
   width: 500px;
-  padding: 0 20px 20px;
   margin: 0 auto;
 }
 hr {
@@ -246,6 +245,7 @@ select::ms-expand {
   border-color: tomato;
 }
 .errorMessage {
+  transform: translate(0, -20px);
   color: red;
 }
 </style>

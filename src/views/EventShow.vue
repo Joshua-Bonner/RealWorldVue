@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ date }}</span>
+      <span class="eyebrow">@{{ time }} on {{ date }}</span>
       <h1 class="title">{{ event.title }}</h1>
       <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
       <h5>Category: {{ event.category }}</h5>
@@ -36,9 +36,12 @@ export default {
     },
   },
   setup(props) {
-    const date = new Date(props.event.date).toDateString()
+    const fullDate = new Date(props.event.date)
+    const date = fullDate.toDateString()
+    const time = fullDate.toLocaleTimeString()
     return {
       date,
+      time,
     }
   },
 }
