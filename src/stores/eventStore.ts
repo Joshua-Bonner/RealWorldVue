@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import EventService from '@/services/EventService'
-import { useNotificationStore } from './notificationStore'
+import { notificationStore } from '@/stores/notificationStore'
 
-export const useEventStore = defineStore('event', {
+export const eventStore = defineStore('event', {
   state: () => ({
     events: [],
     event: {},
@@ -25,7 +25,7 @@ export const useEventStore = defineStore('event', {
             type: 'success',
             message: 'Your event has been created!',
           }
-          useNotificationStore().add(notification)
+          notificationStore().add(notification)
         })
         .catch((error) => {
           const notification = {
@@ -33,7 +33,7 @@ export const useEventStore = defineStore('event', {
             message:
               'There was a problem creating your event: ' + error.message,
           }
-          useNotificationStore().add(notification)
+          notificationStore().add(notification)
           throw error
         })
     },
@@ -60,7 +60,7 @@ export const useEventStore = defineStore('event', {
             type: 'error',
             message: 'There was a problem fetching events: ' + error.message,
           }
-          useNotificationStore().add(notification)
+          notificationStore().add(notification)
         })
     },
   },

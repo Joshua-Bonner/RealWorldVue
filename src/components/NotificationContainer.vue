@@ -10,15 +10,14 @@
 <script>
 import { computed } from 'vue'
 import NotificationBar from '@/components/NotificationBar.vue'
-import { useNotificationStore } from '@/stores/notificationStore.js'
+import { notificationStore } from '@/stores/notificationStore'
 
 export default {
   components: {
     NotificationBar,
   },
   setup() {
-    const notificationStore = useNotificationStore()
-    const notifications = computed(() => notificationStore.notifications)
+    const notifications = computed(() => notificationStore().notifications)
     return {
       notifications,
     }

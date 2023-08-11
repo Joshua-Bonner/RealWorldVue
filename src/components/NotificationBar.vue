@@ -9,7 +9,7 @@
 
 <script>
 import { computed } from 'vue'
-import { useNotificationStore } from '@/stores/notificationStore.js'
+import { notificationStore } from '@/stores/notificationStore'
 
 export default {
   props: {
@@ -19,14 +19,14 @@ export default {
     },
   },
   setup(props) {
-    const notificationStore = useNotificationStore()
+    const notificationS = notificationStore()
     const notificationTypeClass = computed(() => {
       return `-text-${props.notification.type}`
     })
 
     return {
       notificationTypeClass,
-      notificationStore,
+      notificationS,
     }
   },
   mounted() {

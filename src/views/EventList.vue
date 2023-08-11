@@ -23,16 +23,16 @@
     </router-link>
   </div>
 </template>
-<script>
+<script script lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { useEventStore } from '@/stores/eventStore.js'
-import { useUserStore } from '@/stores/userStore.js'
+import { eventStore } from '@/stores/eventStore'
+import { userStore } from '@/stores/userStore'
 import { computed } from 'vue'
 
 function getPageEvents(routeTo, next) {
   const page = parseInt(routeTo.query.page) || 1
-  const eventStore = useEventStore()
-  eventStore
+  const events = eventStore()
+  events
     .fetchEvents(page)
     .then(() => {
       next()
@@ -59,15 +59,14 @@ export default {
     },
   },
   setup(props) {
-    const eventStore = useEventStore()
     const events = computed(() => {
-      return eventStore.events
+      return eventStore().events
     })
     const user = computed(() => {
-      return useUserStore().user
+      return userStore().user
     })
     const hasNextPage = computed(() => {
-      return eventStore.eventsTotal > props.page * eventStore.perPage
+      return eventStore().eventsTotal > props.page * eventStore().perPage
     })
 
     return { hasNextPage, events, user, eventStore }

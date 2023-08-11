@@ -131,9 +131,9 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import { useMainStore } from '@/stores/index.js'
-import { useUserStore } from '@/stores/userStore.js'
-import { useEventStore } from '@/stores/eventStore.js'
+import { useMainStore } from '@/stores/index'
+import { userStore } from '@/stores/userStore'
+import { eventStore } from '@/stores/eventStore'
 
 export default {
   components: {
@@ -166,7 +166,7 @@ export default {
       const isFormValid = await this.v$.$validate()
       if (!isFormValid) return
       NProgress.start()
-      useEventStore()
+      eventStore()
         .createEvent(this.event)
         .then(() => {
           router.push({
@@ -181,7 +181,7 @@ export default {
     }
 
     function createFreshEventObject() {
-      const user = useUserStore().user
+      const user = userStore().user
       const id = Math.floor(Math.random() * 10000000)
 
       return {
