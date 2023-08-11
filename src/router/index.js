@@ -7,7 +7,7 @@ import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
 import { useEventStore } from '@/stores/eventStore'
 
-export const router = new createRouter({
+export const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
     {

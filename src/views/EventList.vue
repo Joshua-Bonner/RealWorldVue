@@ -1,20 +1,26 @@
 <template>
   <div>
     <h1>Events for {{ user.name }}</h1>
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <EventCard
+      v-for="event in events"
+      :key="event.id"
+      :event="event"
+    />
     <router-link
       v-if="page > 1"
       :to="{ name: 'event-list', query: { page: page - 1 } }"
       rel="prev"
-      >Prev Page</router-link
     >
+      Prev Page
+    </router-link>
     |
     <router-link
       v-if="hasNextPage"
       :to="{ name: 'event-list', query: { page: page + 1 } }"
       rel="next"
-      >Next Page</router-link
     >
+      Next Page
+    </router-link>
   </div>
 </template>
 <script>

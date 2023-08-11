@@ -10,7 +10,10 @@
         @blur="v$.event.category.$touch"
       />
 
-      <p v-if="v$.event.category.$error" class="errorMessage">
+      <p
+        v-if="v$.event.category.$error"
+        class="errorMessage"
+      >
         Category is required.
       </p>
 
@@ -25,7 +28,10 @@
         @blur="v$.event.title.$touch"
       />
 
-      <p v-if="v$.event.title.$error" class="errorMessage">
+      <p
+        v-if="v$.event.title.$error"
+        class="errorMessage"
+      >
         Title is required.
       </p>
 
@@ -39,7 +45,10 @@
         @blur="v$.event.description.$touch"
       />
 
-      <p v-if="v$.event.description.$error" class="errorMessage">
+      <p
+        v-if="v$.event.description.$error"
+        class="errorMessage"
+      >
         Description is required.
       </p>
 
@@ -54,7 +63,10 @@
         @blur="v$.event.location.$touch"
       />
 
-      <p v-if="v$.event.location.$error" class="errorMessage">
+      <p
+        v-if="v$.event.location.$error"
+        class="errorMessage"
+      >
         Location is required.
       </p>
 
@@ -70,7 +82,10 @@
           @blur="v$.event.date.$touch"
         />
 
-        <p v-if="v$.event.date.$error" class="errorMessage">
+        <p
+          v-if="v$.event.date.$error"
+          class="errorMessage"
+        >
           Date is required.
         </p>
       </div>
@@ -84,16 +99,25 @@
         @blur="v$.event.time.$touch"
       />
 
-      <p v-if="v$.event.time.$error" class="errorMessage">Time is required.</p>
+      <p
+        v-if="v$.event.time.$error"
+        class="errorMessage"
+      >
+        Time is required.
+      </p>
 
       <BaseButton
         type="submit"
         button-class="-fill-gradient"
         :disabled="v$.event.$invalid"
-        >Submit</BaseButton
       >
+        Submit
+      </BaseButton>
 
-      <p v-if="v$.event.$invalid" class="errorMessage">
+      <p
+        v-if="v$.event.$invalid"
+        class="errorMessage"
+      >
         Please fill out the required field(s).
       </p>
     </form>
