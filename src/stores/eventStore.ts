@@ -38,7 +38,7 @@ export const useEventStore = defineStore('event', {
         })
     },
     fetchEvent(id) {
-      var event = this.getEventById(id)
+      const event = this.getEventById(id)
       if (event) {
         this.event = event
         return event
