@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <v-text-field
-      clearable
-      v-bind="$attrs"
-      density="compact"
-      :label="label"
-      :value="modelValue"
-      variant="outlined"
-      @input="updateValue"
-    />
-  </div>
+  <v-text-field
+    clearable
+    v-bind="$attrs"
+    density="compact"
+    :label="label"
+    :value="modelValue"
+    variant="outlined"
+    @input="updateValue"
+  />
 </template>
 <script>
 import { formFieldMixin } from '../mixins/formFieldMixin'

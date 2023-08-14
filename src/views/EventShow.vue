@@ -5,10 +5,10 @@
         <v-row class="py-lg-3">
           <v-col>
             <h1 class="title">{{ event.title }}</h1>
-            <span class="eyebrow">@{{ time }} on {{ date }}</span>
+            <span class="text-medium-emphasis">@{{ time }} on {{ date }}</span>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <v-divider class="border-opacity-100" color="success"></v-divider>
 
         <v-row class="py-lg-3">
           <v-col>
@@ -18,7 +18,7 @@
             <h5>Category: {{ event.category }}</h5>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <v-divider class="border-opacity-100" color="success"></v-divider>
 
         <v-row class="py-lg-2">
           <v-col>
@@ -26,7 +26,7 @@
             <p>{{ event.description }}</p>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <v-divider class="border-opacity-100" color="success"></v-divider>
 
         <v-row class="py-lg-2">
           <v-col>
@@ -36,23 +36,27 @@
             >
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <v-divider class="border-opacity-100" color="success"></v-divider>
 
-        <h2>
-          Attendees
-          <span class="badge -fill-gradient">{{
-            event.attendees ? event.attendees.length : 0
-          }}</span>
-        </h2>
-        <ul class="list-group">
-          <li
-            v-for="(attendee, index) in event.attendees"
-            :key="index"
-            class="list-item"
-          >
-            <b>{{ attendee.name }}</b>
-          </li>
-        </ul>
+        <v-row class="py-lg-2">
+          <v-col>
+            <h2>
+              Attendees
+              <span class="badge -fill-gradient">{{
+                event.attendees ? event.attendees.length : 0
+              }}</span>
+            </h2>
+            <v-list lines="1" class="list-group">
+              <v-list-item
+                v-for="(attendee, index) in event.attendees"
+                :key="index"
+                class="list-item"
+              >
+                <b>{{ attendee.name }}</b>
+              </v-list-item>
+            </v-list>
+          </v-col>
+        </v-row>
       </v-sheet>
     </v-container>
   </div>
