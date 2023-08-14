@@ -1,6 +1,7 @@
 import App from './App.vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import 'nprogress/nprogress.css'
 import { createApp } from 'vue'

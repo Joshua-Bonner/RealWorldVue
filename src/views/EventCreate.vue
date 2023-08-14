@@ -6,6 +6,7 @@
         <BaseSelect
           v-model="event.category"
           :options="categories"
+          prepend-inner-icon="mdi-shape-plus-outline"
           :class="{ error: v$.event.category.$error }"
           :label="event.category ? 'Category' : 'Select a category'"
           @blur="v$.event.category.$touch"
@@ -18,6 +19,7 @@
         <BaseInput
           v-model="event.title"
           :label="event.title ? 'Title' : 'Title'"
+          prepend-inner-icon="mdi-format-title"
           type="text"
           placeholder="Title"
           :class="{ error: v$.event.title.$error }"
@@ -31,6 +33,7 @@
         <BaseInput
           v-model="event.description"
           :label="event.description ? 'Description' : 'Description'"
+          prepend-inner-icon="mdi-pencil-outline"
           type="text"
           placeholder="Description"
           :class="{ error: v$.event.description.$error }"
@@ -45,6 +48,7 @@
         <BaseInput
           v-model="event.location"
           :label="event.location ? 'Location' : 'Location'"
+          prepend-inner-icon="mdi-map-marker"
           type="text"
           placeholder="Location"
           :class="{ error: v$.event.location.$error }"

@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <NavBar />
-    <NotificationContainer />
-    <router-view :key="$route?.fullPath" />
+    <v-app>
+      <NavBar />
+      <NotificationContainer />
+      <router-view :key="$route?.fullPath" />
+    </v-app>
   </div>
 </template>
 

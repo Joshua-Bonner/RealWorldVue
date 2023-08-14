@@ -31,9 +31,8 @@
         <v-row class="py-lg-2">
           <v-col>
             <h2>Location</h2>
-            <BaseIcon name="map"
-              ><address>{{ event.location }}</address></BaseIcon
-            >
+            <v-icon>mdi-map-marker</v-icon>
+            <span>{{ event.location }}</span>
           </v-col>
         </v-row>
         <v-divider class="border-opacity-100" color="success"></v-divider>

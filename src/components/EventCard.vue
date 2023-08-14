@@ -4,9 +4,13 @@
     :to="{ name: 'event-show', params: { id: event.id } }"
   >
     <div class="event-card -shadow">
-      <span class="eyebrow">@{{ time }} on {{ date }}</span>
+      <v-icon style="margin-right: 5px">mdi-clock-check-outline</v-icon>
+      <span class="eyebrow">{{ time }} on {{ date }}</span>
       <h4 class="title">{{ event.title }}</h4>
-      <BaseIcon name="users">{{ event.attendees.length }} attending</BaseIcon>
+      <div>
+        <v-icon>mdi-account-group-outline</v-icon>
+        <span style="margin-left: 5px">{{ event.attendees.length }}</span>
+      </div>
     </div>
   </router-link>
 </template>
