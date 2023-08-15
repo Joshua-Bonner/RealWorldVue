@@ -1,9 +1,14 @@
 <template>
   <div id="app">
     <v-app>
-      <NavBar />
-      <NotificationContainer />
-      <router-view :key="$route?.fullPath" />
+      <v-content id="body">
+        <v-container id="container">
+          <NavBar />
+          <NotificationContainer />
+          <router-view :key="$route?.fullPath" />
+        </v-container>
+      </v-content>
+      <AppFooter />
     </v-app>
   </div>
 </template>
@@ -11,11 +16,13 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import NotificationContainer from '@/components/NotificationContainer.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
   components: {
     NavBar,
     NotificationContainer,
+    AppFooter,
   },
 }
 </script>
@@ -26,16 +33,29 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body {
+#app {
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: auto;
+}
+#body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
-#app {
-  box-sizing: border-box;
-  width: 500px;
-  margin: 0 auto;
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+#footer {
+  bottom: 0;
+  justify-content: center;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  padding-bottom: 30px;
 }
 hr {
   box-sizing: content-box;
@@ -245,6 +265,9 @@ select::ms-expand {
 }
 .error {
   border-color: tomato;
+}
+.content {
+  width: 45%;
 }
 .errorMessage {
   transform: translate(0, -20px);

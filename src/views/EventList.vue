@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Events for {{ user.name }}</h1>
     <EventCard v-for="event in events" :key="event.id" :event="event" />
     <router-link
@@ -15,7 +15,7 @@
       rel="next"
       >Next Page</router-link
     >
-  </div>
+  </v-container>
 </template>
 <script>
 import EventCard from '@/components/EventCard.vue'
