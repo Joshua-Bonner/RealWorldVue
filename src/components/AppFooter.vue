@@ -2,7 +2,7 @@
   <div>
     <v-footer id="footer">
       <span style="font-weight: bold">Joshua Bonner</span>
-      <span>@</span>
+      <span style="margin-right: 5px">@</span>
       <v-button>
         <a href="https://github.com/Joshua-Bonner"
           ><v-icon>mdi-github</v-icon></a

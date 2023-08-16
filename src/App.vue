@@ -48,6 +48,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 35%;
+  margin: 0 auto;
 }
 #footer {
   bottom: 0;

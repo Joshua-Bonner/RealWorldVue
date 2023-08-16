@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Beach Cleanup",
-      "date": "2023-07-27T19:22:54.689Z",
+      "date": "2023-08-31T18:30:00.000Z",
       "location": "Daytona Beach",
       "description": "Let's clean up this beach.",
       "organizer": "Adam Jahr",
@@ -49,7 +49,7 @@
     {
       "id": 3,
       "title": "Pet Adoption Day",
-      "date": "2023-07-27T19:22:54.689Z",
+      "date": "2023-08-31T18:30:00.000Z",
       "location": "132 N Magnolia Street, Orlando, Florida",
       "description": "Help animals find new homes.",
       "organizer": "Gregg Pollack",
@@ -72,7 +72,7 @@
     {
       "id": 4,
       "title": "Disco Party",
-      "date": "2023-07-27T19:22:54.689Z",
+      "date": "2023-08-04T14:15:00.000Z",
       "location": "Daytona Beach",
       "description": "Let's clean up this beach.",
       "organizer": "Adam Jahr",
@@ -118,7 +118,7 @@
     {
       "id": 6,
       "title": "Orlando Dev Meetup",
-      "date": "2023-07-27T19:22:54.689Z",
+      "date": "2023-08-31T18:30:00.000Z",
       "location": "132 N Magnolia Street, Orlando, Florida",
       "description": "Help animals find new homes.",
       "organizer": "Gregg Pollack",
@@ -141,7 +141,7 @@
     {
       "id": 7,
       "title": "Yoga Class",
-      "date": "2023-07-27T19:22:54.689Z",
+      "date": "2023-08-04T14:15:00.000Z",
       "location": "Daytona Beach",
       "description": "Let's clean up this beach.",
       "organizer": "Adam Jahr",
@@ -241,6 +241,32 @@
         {
           "id": "abc123",
           "name": "Mommy Momsum"
+        }
+      ]
+    },
+    {
+      "id": 6525812,
+      "user": {
+        "id": "abc123",
+        "name": "Joshua"
+      },
+      "category": "Nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Joshua"
+      },
+      "title": "Go On A Hike",
+      "description": "Its stuffy in the house, lets go for a walk",
+      "location": "Some place in the mountains",
+      "date": "2023-08-31T18:30:00.000Z",
+      "attendees": [
+        {
+          "id": "abc123",
+          "name": "Joshua Bonner"
+        },
+        {
+          "id": "abc123",
+          "name": "Adam Fedor"
         }
       ]
     }
