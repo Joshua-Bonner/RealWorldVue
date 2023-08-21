@@ -1,16 +1,12 @@
 <template>
-  <div id="app">
-    <v-app>
-      <v-content id="body">
-        <v-container id="container">
-          <NavBar />
-          <NotificationContainer />
-          <router-view :key="$route?.fullPath" />
-        </v-container>
-      </v-content>
-      <AppFooter />
-    </v-app>
-  </div>
+  <v-app id="app">
+    <v-container id="body">
+      <NavBar />
+      <NotificationContainer />
+      <router-view :key="$route?.fullPath" />
+    </v-container>
+    <AppFooter />
+  </v-app>
 </template>
 
 <script>
@@ -39,16 +35,13 @@ html {
   width: auto;
 }
 #body {
-  margin: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-}
-#container {
   display: flex;
   flex-direction: column;
-  width: 35%;
-  margin: 0 auto;
+  width: 40%;
+  margin: 20px auto;
 }
 #footer {
   bottom: 0;
@@ -56,7 +49,6 @@ html {
   position: absolute;
   display: flex;
   width: 100%;
-  padding-bottom: 30px;
 }
 hr {
   box-sizing: content-box;
@@ -85,6 +77,8 @@ h6 {
 h1 {
   font-size: 50px;
   font-weight: 700;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 h2 {
   font-size: 38px;
@@ -266,9 +260,6 @@ select::ms-expand {
 }
 .error {
   border-color: tomato;
-}
-.content {
-  width: 45%;
 }
 .errorMessage {
   transform: translate(0, -20px);

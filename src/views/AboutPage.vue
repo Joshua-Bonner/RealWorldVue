@@ -2,17 +2,19 @@
   <div>
     <h3>About:</h3>
     <p style="padding: 20px">
-      This is a simple app to help a user keep track of their planned events. It
-      is built with Vue.js leveraging Vue3 Composition API, Pinia, and Vuetify
-      as well as other third party libraries.
+      This is a simple web application to help users keep track of their planned
+      events. It is built with Vue.js utilizing the updated Vue3 Composition
+      API, Pinia for state management, and Vuetify components as well as other
+      third party libraries.
     </p>
     <v-divider class="border-opacity-100 py-lg-2" color="success"></v-divider>
     <h3>Purpose:</h3>
     <p style="padding: 20px">
       Given the transition to the new AIDE development environment, our team was
       tasked with training up on the new technologies briefed by the MARS system
-      architects. This application demonstrates our ability to leverage and
-      apply these new technologies in a real world application.
+      architects. This application was used as a sandbox environment to practice
+      our ability to leverage and apply these new technologies in a real world
+      application.
     </p>
     <v-divider class="border-opacity-100 py-lg-2" color="success"></v-divider>
     <h3>Background:</h3>

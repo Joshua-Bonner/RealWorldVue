@@ -3,15 +3,25 @@
     class="event-link"
     :to="{ name: 'event-show', params: { id: event.id } }"
   >
-    <div class="event-card -shadow">
-      <h4 class="title">{{ event.title }}</h4>
-      <v-icon style="margin-right: 5px">mdi-clock-check-outline</v-icon>
-      <span class="eyebrow">{{ time }} on {{ date }}</span>
-      <div>
-        <v-icon>mdi-account-group-outline</v-icon>
-        <span style="margin-left: 5px">{{ event.attendees.length }}</span>
-      </div>
-    </div>
+    <v-container class="event-card -shadow">
+      <v-row>
+        <v-col class="py-1">
+          <h4 class="title">{{ event.title }}</h4>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="py-1">
+          <v-icon style="margin-right: 5px">mdi-clock-check-outline</v-icon>
+          <span class="eyebrow">{{ time }} on {{ date }}</span>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="py-1">
+          <v-icon>mdi-account-group-outline</v-icon>
+          <span style="margin-left: 5px">{{ event.attendees.length }}</span>
+        </v-col>
+      </v-row>
+    </v-container>
   </router-link>
 </template>
 
@@ -38,6 +48,7 @@ export default {
 <style scoped>
 .event-card {
   padding: 20px;
+  width: 75%;
   margin-bottom: 24px;
   transition: all 0.2s linear;
   cursor: pointer;
