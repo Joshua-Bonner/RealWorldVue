@@ -1,12 +1,12 @@
 <template>
-  <div id="nav" class="nav">
+  <v-container id="nav" class="nav">
     <router-link to="/" class="brand">Real World Events</router-link>
     <nav>
       <router-link :to="{ name: 'event-list' }">List</router-link> |
       <router-link :to="{ name: 'event-create' }">Create</router-link> |
       <router-link :to="{ name: 'about-page' }">About</router-link>
     </nav>
-  </div>
+  </v-container>
 </template>
 <script>
 export default {}
@@ -17,6 +17,7 @@ export default {}
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  width: 30%;
 }
 .nav > .brand {
   font-family: 'Montserrat', sans-serif;

@@ -1,6 +1,8 @@
 <template>
-  <div class="notification-bar" :class="notificationTypeClass">
-    <p>{{ notification.message }}</p>
+  <div>
+    <v-snackbar :class="notificationTypeClass">
+      {{ notification.message }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -29,16 +31,10 @@ export default {
   mounted() {
     setTimeout(() => {
       this.notificationStore.remove(this.notification.id)
-    }, 5000)
+    }, 2000)
   },
   unmounted() {
     clearTimeout()
   },
 }
 </script>
-
-<style scoped>
-.notification-bar {
-  margin: 1em 0 1em;
-}
-</style>

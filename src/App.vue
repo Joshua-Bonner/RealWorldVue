@@ -1,9 +1,9 @@
 <template>
   <v-app id="app">
-    <v-container id="body">
-      <NavBar />
-      <NotificationContainer />
+    <NavBar />
+    <v-container id="body" class="overflow-auto">
       <router-view :key="$route?.fullPath" />
+      <NotificationContainer />
     </v-container>
     <AppFooter />
   </v-app>
