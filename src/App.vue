@@ -1,19 +1,24 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <NavBar />
-    <NotificationContainer />
-    <router-view :key="$route?.fullPath" />
-  </div>
+    <v-container id="body" class="overflow-auto">
+      <router-view :key="$route?.fullPath" />
+      <NotificationContainer />
+    </v-container>
+    <AppFooter />
+  </v-app>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import NotificationContainer from '@/components/NotificationContainer.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
   components: {
     NavBar,
     NotificationContainer,
+    AppFooter,
   },
 }
 </script>
@@ -24,17 +29,26 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body {
-  margin: 0;
+#app {
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: auto;
+}
+#body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 20px auto;
 }
-#app {
-  box-sizing: border-box;
-  width: 500px;
-  padding: 0 20px 20px;
-  margin: 0 auto;
+#footer {
+  bottom: 0;
+  justify-content: center;
+  position: absolute;
+  display: flex;
+  width: 100%;
 }
 hr {
   box-sizing: content-box;
@@ -63,6 +77,8 @@ h6 {
 h1 {
   font-size: 50px;
   font-weight: 700;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 h2 {
   font-size: 38px;
@@ -242,14 +258,11 @@ select:focus::ms-value {
 select::ms-expand {
   opacity: 0;
 }
-.field {
-  margin-bottom: 24px;
-}
 .error {
-  border: 1px solid red;
+  border-color: tomato;
 }
 .errorMessage {
+  transform: translate(0, -20px);
   color: red;
-  transform: translate(0, -10px);
 }
 </style>

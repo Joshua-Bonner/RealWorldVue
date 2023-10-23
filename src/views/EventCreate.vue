@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <h1>Create an Event</h1>
-    <form @submit.prevent="createEvent">
+  <form @submit.prevent="createEvent">
+    <v-container style="width: 75%">
+      <h1>Create an Event</h1>
       <BaseSelect
         v-model="event.category"
-        label="Select a category"
         :options="categories"
+        prepend-inner-icon="mdi-shape-plus-outline"
         :class="{ error: v$.event.category.$error }"
+        :label="event.category ? 'Category' : 'Select a category'"
         @blur="v$.event.category.$touch"
       />
-
       <p v-if="v$.event.category.$error" class="errorMessage">
         Category is required.
       </p>
@@ -17,10 +17,10 @@
       <h3>Name & describe your event</h3>
       <BaseInput
         v-model="event.title"
-        label="Title"
+        :label="event.title ? 'Title' : 'Title'"
+        prepend-inner-icon="mdi-format-title"
         type="text"
         placeholder="Title"
-        class="field"
         :class="{ error: v$.event.title.$error }"
         @blur="v$.event.title.$touch"
       />
@@ -31,10 +31,10 @@
 
       <BaseInput
         v-model="event.description"
-        label="Description"
+        :label="event.description ? 'Description' : 'Description'"
+        prepend-inner-icon="mdi-pencil-outline"
         type="text"
         placeholder="Description"
-        class="field"
         :class="{ error: v$.event.description.$error }"
         @blur="v$.event.description.$touch"
       />
@@ -46,10 +46,10 @@
       <h3>Where is your event?</h3>
       <BaseInput
         v-model="event.location"
-        label="Location"
+        :label="event.location ? 'Location' : 'Location'"
+        prepend-inner-icon="mdi-map-marker"
         type="text"
         placeholder="Location"
-        class="field"
         :class="{ error: v$.event.location.$error }"
         @blur="v$.event.location.$touch"
       />
@@ -60,31 +60,18 @@
 
       <h3>When is your event?</h3>
 
-      <div class="field">
-        <label>Date</label>
-        <Datepicker
-          v-model="event.date"
-          input-format="MMM dd yyyy"
-          placeholder="Date"
-          :class="{ error: v$.event.date.$error }"
-          @blur="v$.event.date.$touch"
-        />
-
-        <p v-if="v$.event.date.$error" class="errorMessage">
-          Date is required.
-        </p>
-      </div>
-
-      <BaseSelect
-        v-model="event.time"
-        label="Time"
-        :options="times"
-        class="field"
-        :class="{ error: v$.event.time.$error }"
-        @blur="v$.event.time.$touch"
+      <VueDatePicker
+        v-model="event.date"
+        input-class-name="DatePickerInput"
+        clearable
+        placeholder="Date"
+        :class="{ error: v$.event.date.$error }"
+        @blur="v$.event.date.$touch"
       />
 
-      <p v-if="v$.event.time.$error" class="errorMessage">Time is required.</p>
+      <br />
+
+      <p v-if="v$.event.date.$error" class="errorMessage">Date is required.</p>
 
       <BaseButton
         type="submit"
@@ -94,14 +81,14 @@
       >
 
       <p v-if="v$.event.$invalid" class="errorMessage">
+        <br />
         Please fill out the required field(s).
       </p>
-    </form>
-  </div>
+    </v-container>
+  </form>
 </template>
 
 <script>
-import Datepicker from 'vue3-datepicker'
 import NProgress from 'nprogress'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
@@ -110,14 +97,15 @@ import { required } from '@vuelidate/validators'
 import { useMainStore } from '@/stores/index.js'
 import { useUserStore } from '@/stores/userStore.js'
 import { useEventStore } from '@/stores/eventStore.js'
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
   components: {
-    Datepicker,
+    VueDatePicker,
   },
   setup() {
-    const times = ref([])
-    const date = ref(new Date())
+    const date = ref()
     const event = ref(createFreshEventObject())
     const router = useRouter()
     const mainStore = useMainStore()
@@ -129,17 +117,12 @@ export default {
         description: { required },
         location: { required },
         date: { required },
-        time: { required },
       },
     }))
 
-    for (let i = 0; i <= 23; i++) {
-      times.value.push(i + ':00')
-    }
-
-    async function createEvent() {
+    function createEvent() {
       this.v$.$touch()
-      const isFormValid = await this.v$.$validate()
+      const isFormValid = this.v$.$validate()
       if (!isFormValid) return
       NProgress.start()
       useEventStore()
@@ -169,14 +152,12 @@ export default {
         description: '',
         location: '',
         date,
-        time: '',
         attendees: [],
       }
     }
 
     return {
       v$: useVuelidate(rules, { event }),
-      times,
       categories,
       event,
       createEvent,
@@ -184,3 +165,12 @@ export default {
   },
 }
 </script>
+<style>
+.DatePickerInput {
+  height: 60px;
+  border-color: rgb(174, 174, 174);
+  &.hover {
+    border-color: black;
+  }
+}
+</style>

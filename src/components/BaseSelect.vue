@@ -1,17 +1,14 @@
 <template>
-  <div>
-    <label v-if="label">{{ label }}</label>
-    <select v-bind="$attrs" :value="modelValue" @change="updateValue">
-      <option
-        v-for="option in options"
-        :key="option.id"
-        :value="option"
-        :selected="option === value"
-      >
-        {{ option }}
-      </option>
-    </select>
-  </div>
+  <v-select
+    clearable
+    v-bind="$attrs"
+    :label="label"
+    :value="modelValue"
+    :items="options"
+    variant="outlined"
+    @change="updateValue"
+  >
+  </v-select>
 </template>
 <script>
 import { formFieldMixin } from '../mixins/formFieldMixin'
@@ -25,6 +22,10 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+    label: {
+      type: String,
+      default: '',
     },
   },
 }

@@ -7,7 +7,7 @@ export const useEventStore = defineStore('event', {
     events: [],
     event: {},
     eventsTotal: 0,
-    perPage: 3,
+    perPage: 4,
   }),
 
   getters: {

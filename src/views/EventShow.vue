@@ -1,31 +1,58 @@
 <template>
-  <div>
-    <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ date }}</span>
-      <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
-      <h5>Category: {{ event.category }}</h5>
-    </div>
-    <BaseIcon name="map"><h2>Location</h2></BaseIcon>
-    <address>{{ event.location }}</address>
-    <h2>Event details</h2>
-    <p>{{ event.description }}</p>
-    <h2>
-      Attendees
-      <span class="badge -fill-gradient">{{
-        event.attendees ? event.attendees.length : 0
-      }}</span>
-    </h2>
-    <ul class="list-group">
-      <li
-        v-for="(attendee, index) in event.attendees"
-        :key="index"
-        class="list-item"
-      >
-        <b>{{ attendee.name }}</b>
-      </li>
-    </ul>
-  </div>
+  <v-container style="width: 75%">
+    <v-row class="py-2">
+      <v-col>
+        <h1>{{ event.title }}</h1>
+        <span class="text-medium-emphasis">@{{ time }} on {{ date }}</span>
+      </v-col>
+    </v-row>
+    <v-divider class="border-opacity-100" color="success"></v-divider>
+
+    <v-row class="py-2">
+      <v-col>
+        <h5>Organized by: {{ event.organizer ? event.organizer.name : '' }}</h5>
+        <h5>Category: {{ event.category }}</h5>
+      </v-col>
+    </v-row>
+    <v-divider class="border-opacity-100" color="success"></v-divider>
+
+    <v-row class="py-2">
+      <v-col>
+        <h2>Event details</h2>
+        <p>{{ event.description }}</p>
+      </v-col>
+    </v-row>
+    <v-divider class="border-opacity-100" color="success"></v-divider>
+
+    <v-row class="py-2">
+      <v-col>
+        <h2>Location</h2>
+        <v-icon>mdi-map-marker</v-icon>
+        <span>{{ event.location }}</span>
+      </v-col>
+    </v-row>
+    <v-divider class="border-opacity-100" color="success"></v-divider>
+
+    <v-row class="py-2">
+      <v-col>
+        <h2>
+          Attendees
+          <span class="badge -fill-gradient">{{
+            event.attendees ? event.attendees.length : 0
+          }}</span>
+        </h2>
+        <v-list lines="1" class="list-group">
+          <v-list-item
+            v-for="(attendee, index) in event.attendees"
+            :key="index"
+            class="list-item"
+          >
+            <b>{{ attendee.name }}</b>
+          </v-list-item>
+        </v-list>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
@@ -36,9 +63,12 @@ export default {
     },
   },
   setup(props) {
-    const date = new Date(props.event.date).toDateString()
+    const fullDate = new Date(props.event.date)
+    const date = fullDate.toDateString()
+    const time = fullDate.toLocaleTimeString()
     return {
       date,
+      time,
     }
   },
 }
@@ -49,9 +79,6 @@ export default {
 }
 .location > .icon {
   margin-left: 10px;
-}
-.event-header > .title {
-  margin: 0;
 }
 .list-group {
   margin: 0;

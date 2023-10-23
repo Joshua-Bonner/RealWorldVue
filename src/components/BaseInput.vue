@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <label v-if="label">{{ label }}</label>
-    <input v-bind="$attrs" :value="modelValue" @input="updateValue" />
-  </div>
+  <v-text-field
+    clearable
+    v-bind="$attrs"
+    density="compact"
+    :label="label"
+    :value="modelValue"
+    variant="outlined"
+    @input="updateValue"
+  />
 </template>
 <script>
 import { formFieldMixin } from '../mixins/formFieldMixin'
@@ -12,6 +17,10 @@ export default {
   props: {
     modelValue: {
       type: [String, Number],
+      required: true,
+    },
+    label: {
+      type: String,
       required: true,
     },
   },

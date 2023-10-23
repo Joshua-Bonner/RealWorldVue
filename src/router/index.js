@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import EventCreate from '../views/EventCreate.vue'
 import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
+import AboutPage from '../views/AboutPage.vue'
 import NProgress from 'nprogress'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
@@ -41,6 +42,11 @@ export const router = new createRouter({
             }
           })
       },
+    },
+    {
+      path: '/about',
+      name: 'about-page',
+      component: AboutPage,
     },
     {
       path: '/404',
